@@ -43,8 +43,8 @@ SKSEPluginLoad(const LoadInterface* skse) {
         // First address identifier is SSE, second AE
         auto location = REL::RelocationID(67472, 68782).address(); // Get address of function: BSWin32KeyboardDevice::Process_140C1A130 (SSE)
 
-        if (gameIsAE) {
-            location += 0x250;  // (Original Instruction [AE: 140C53020] "setz al" replaced by "xor al, al")
+        if (gameIsAE) {  // Get the offset into the instruction from the beginning of the function, depending on game version.
+            location += 0x250; 
         } else { // SSE and VR 
             location += 0x1BB;  
         }
@@ -54,7 +54,7 @@ SKSEPluginLoad(const LoadInterface* skse) {
             asHexAddress(location), 
             asHexAddress(location - baseAddress));
 
-        REL::safe_write(location, instructions);
+        REL::safe_write(location, instructions);  // (Original Instruction [AE: 140C53020] "setz al" replaced by "xor al, al")
     }
 
     log::info("{} has finished.", plugin->GetName());
