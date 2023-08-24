@@ -13,16 +13,19 @@ SKSEPluginLoad(const LoadInterface* skse) {
     log::info("{} {} is starting...", plugin->GetName(), version);
     Init(skse);
 
-    uint64_t baseAddress = (uint64_t)GetModuleHandleA("SkyrimSE.exe");
     bool gameIsAE = REL::Module::IsAE();
     bool gameIsVR = REL::Module::IsVR();
 
-    std::string versionId = "";
+    if (gameIsVR) {
+        log::info("This mod is incompatible with Skyrim VR. Exiting without applying any changes...");
+        return true;
+    }
 
+    uint64_t baseAddress = (uint64_t)GetModuleHandleA("SkyrimSE.exe");
+    
+    std::string versionId = "";
     if (gameIsAE) { 
-        versionId = "AE";
-    } else if(gameIsVR) {
-        versionId = "VR";
+        versionId = "AE"; 
     } else {
         versionId = "SE";
     }
