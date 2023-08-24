@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        "papyrus.skyrimSpecialEdition.enabled": false,
+        "papyrus.fallout4.enabled": false,
+        "papyrus.skyrim.enabled": false
+    }
+}

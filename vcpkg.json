@@ -1,0 +1,35 @@
+{
+    "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+    "name": "commonlibsse-sample-plugin",
+    "version-string": "1.0.0",
+    "port-version": 0,
+    "description": "Prevents the Caps Lock key from activating CapsLock (all uppercase) in text input fields. The Caps Lock key will still work as hotkey.",
+    "homepage": "",
+    "license": "GPL-3.0",
+    "features": {
+        
+        "plugin": {
+            "description": "Build the SKSE plugin.",
+            "dependencies": [
+                "commonlibsse-ng"
+            ]
+        },
+        "tests": {
+            "description": "Build tests for the SKSE plugin.",
+            "dependencies": [
+                {
+                    "name": "commonlibsse-sample-plugin",
+                    "default-features": false,
+                    "features": [
+                        "plugin"
+                    ]
+                },
+                "catch2"
+            ]
+        }
+    },
+    "default-features": [
+        "plugin",
+        "tests"
+    ]
+}
